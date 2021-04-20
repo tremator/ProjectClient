@@ -13,9 +13,10 @@ export class UserReportsComponent implements OnInit {
   id : any
   user: any
   reports: any
-  constructor(private ActivatedRoute: ActivatedRoute, private apollo: Apollo) { }
+  constructor(private ActivatedRoute: ActivatedRoute, private apollo: Apollo, private router: Router) { }
 
   ngOnInit(): void {
+    this.checkJwt();
     this.getProductId();
     this.getUser();
   }
@@ -37,6 +38,12 @@ export class UserReportsComponent implements OnInit {
       this.reports = this.user.reports;
       console.log(this.reports)
     })
+  }
+  checkJwt(){
+    var token = localStorage.getItem("token");
+    if(token == null){
+      this.router.navigate(['']);
+    }
   }
 
 }

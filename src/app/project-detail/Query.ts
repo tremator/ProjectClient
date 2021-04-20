@@ -28,3 +28,9 @@ query($id: Int) {
     
 }
 `;
+export const PROJECTEXCEL = gql`
+query($id: Int!, $initialDate: String, $endDate: String) {
+    projectReport(id: $id, initialDate:$initialDate, endDate: $endDate)
+}
+`;
+

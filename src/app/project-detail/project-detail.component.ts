@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { Apollo } from 'apollo-angular';
-import { GetProjects, GetUsers } from './Query';
+import { GetProjects, GetUsers, PROJECTEXCEL } from './Query';
 import { UpdateProject, ADD_USER, DELETE_USER, CREATE_REPORT } from './Mutation';
-
+import { DomSanitizer } from '@angular/platform-browser';
+import {saveAs} from 'file-saver';
 @Component({
   selector: 'app-project-detail',
   templateUrl: './project-detail.component.html',
@@ -22,11 +23,12 @@ export class ProjectDetailComponent implements OnInit {
   formReport: any = {
     hours: null
   };
-  constructor(private ActivatedRoute: ActivatedRoute, private apollo: Apollo) {   
+  constructor(private ActivatedRoute: ActivatedRoute, private apollo: Apollo, private router: Router,private sanitizer: DomSanitizer) {   
 
   }
 
   ngOnInit(): void {
+    this.checkJwt();
     this.getProductId();
     this.getProject();
     this.getusers();
@@ -134,6 +136,25 @@ export class ProjectDetailComponent implements OnInit {
     })
   }
 
-
-  
+  logOut(){
+    localStorage.clear();
+    this.router.navigate(['']);
+  }
+  checkJwt(){
+    var token = localStorage.getItem("token");
+    if(token == null){
+      this.router.navigate(['']);
+    }
+  }
+  transform() {
+    this.apollo.watchQuery({
+      query: PROJECTEXCEL,
+      variables: {
+        id: this.id
+      }
+    }).valueChanges.subscribe(result => {
+      console.log(result.data);
+    })
+    //saveAs(this.base64data, `filename.xls`)
+  }
 }

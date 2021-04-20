@@ -5,7 +5,7 @@ import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
 
 import { ChartsModule } from 'ng2-charts';
-import { PieChartComponent } from './piechart/piechart.component';
+import { PiechartComponent } from './piechart/piechart.component';
 import {APOLLO_OPTIONS} from 'apollo-angular';
 import {HttpLink} from 'apollo-angular/http';
 import {InMemoryCache} from '@apollo/client/core';
@@ -23,7 +23,7 @@ import { RegisterComponent } from './register/register.component';
   declarations: [
     AppComponent,
     LoginComponent,
-    PieChartComponent,
+    PiechartComponent,
     ProjectsComponent,
     ProjectDetailComponent,
     ProjectReportsComponent,

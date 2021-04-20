@@ -19,12 +19,16 @@ export class ProjectsComponent implements OnInit {
     name: null,
     description: null,
   };
+  formFilter: any = {
+    name: null,
+  };
   constructor(private apollo: Apollo, private router: Router) { 
     this.projects = []
     this.newProjectId = Number;
   }
 
   ngOnInit(): void {
+    this.checkJwt();
     this.getProjects();
     this.userId = localStorage.getItem("id");
   }
@@ -83,4 +87,27 @@ export class ProjectsComponent implements OnInit {
     this.router.navigate(['']);
   }
 
+  checkJwt(){
+    var token = localStorage.getItem("token");
+    if(token == null){
+      this.router.navigate(['']);
+    }
+  }
+
+  filter(){
+    var newList = [];
+    const { name } = this.formFilter;
+    console.log(name);
+    if(name == null || name == ""){
+      this.getProjects();
+    }else{
+
+    this.projects.forEach(element => {
+      if(element.name == name){
+        newList.push(element);
+      }
+    });
+    this.projects = newList;
+  }
+  }
 }

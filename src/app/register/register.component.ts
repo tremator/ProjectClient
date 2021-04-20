@@ -31,7 +31,7 @@ export class RegisterComponent implements OnInit {
         }
       }
     }).subscribe(result => {
-      this.router.navigate(['/home']);
+      this.router.navigate(['']);
       console.log(result.data);
     })
   }
