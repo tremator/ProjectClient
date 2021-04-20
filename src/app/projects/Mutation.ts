@@ -19,3 +19,12 @@ mutation($projectUser: ProjectUserInput!){
   }
 }
 `;
+export const DELETE_PROJECT = gql`
+mutation($id: Int!){
+  deleteProject(input: $id){
+    id
+    description
+    
+  }
+}
+`;

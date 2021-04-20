@@ -65,6 +65,9 @@
                             class="px-5 py-2 border-purple-500 border text-white-500 rounded transition duration-300 hover:bg-purple-700 hover:text-white focus:outline-none"
                             [routerLink]="['/project',project.id]" routerLinkActive="router-link-active">View Details</button>
                     </td>
+                    <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-500">
+                        <button (click)="delete(project.id)">Delete</button>
+                    </td>
                 </tr>
             </tbody>
         </table>

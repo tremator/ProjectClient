@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Apollo } from 'apollo-angular';
 import { GetProjects } from './Query';
-import { CREATE_Project, ADD_USER } from './Mutation';
+import { CREATE_Project, ADD_USER, DELETE_PROJECT } from './Mutation';
 import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
@@ -109,5 +109,15 @@ export class ProjectsComponent implements OnInit {
     });
     this.projects = newList;
   }
+  }
+  delete(id: number){
+    this.apollo.mutate({
+      mutation: DELETE_PROJECT,
+      variables: {
+        id: id
+      }
+    }).subscribe(()=>{
+      this.getProjects();
+    })
   }
 }
