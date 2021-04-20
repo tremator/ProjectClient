@@ -1,0 +1,12 @@
+<table>
+    <tr>
+        <th>hours</th>
+        <th>Date</th>
+        <th>User</th>
+    </tr>
+    <tr *ngFor="let report of reports">
+        <td>{{report.hours}}</td>
+        <td>{{report.date}}</td>
+        <td> {{report.user.name}}</td>
+    </tr>
+</table>

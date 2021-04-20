@@ -1,0 +1,37 @@
+<a [routerLink]="['/userReports',userId]" routerLinkActive="router-link-active">
+    View My Reports
+</a>
+
+<button (click)="logOut()" >
+    LogOut
+</button>
+
+<br>
+<br>
+<br>
+<table>
+    <tr>
+        <th>Name</th>
+        <th>description</th>
+    </tr>
+    <tr *ngFor="let project of projects">
+        <td>{{project.name}}</td>
+        <td>{{project.description}}</td>
+        <td> <a [routerLink]="['/project',project.id]" routerLinkActive="router-link-active"> see</a></td>
+    </tr>
+</table>
+
+
+<div>
+    <label for="name">Name:</label>
+    <input type="text" name="name" [(ngModel)]="form.name"required>
+    <br>
+    <label for="description">Description:</label>
+    <input type="text" name="description" [(ngModel)]="form.description" required>
+    <br>
+    
+    <br>
+    <button (click)="createProject()">Save</button>
+</div>
+
+

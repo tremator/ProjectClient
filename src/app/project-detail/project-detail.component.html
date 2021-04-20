@@ -1,0 +1,46 @@
+<a [routerLink]="['/projectReports',id]" routerLinkActive="router-link-active">
+    View Reports
+</a>
+<br>
+<br>
+<br>
+<div>
+    <label for="name">Name:</label>
+    <input type="text" name="name" [(ngModel)]="form.name" value ="project.name" required>
+    <br>
+    <label for="description">Description:</label>
+    <input type="text" name="description" [(ngModel)]="form.description" value ="project.description" required>
+    <br>
+    
+    <br>
+    <button (click)="update()">Update</button>
+</div>
+<div>
+    <h1>Current users in the project</h1>
+    <table>
+        <tr>
+            <th>Name</th>
+        </tr>
+        <tr *ngFor="let user of currentUsers">
+            <td>{{user.name}}</td>
+            <td> <button (click)="deleteUser(user.id)"> Delete</button> </td>
+        </tr>
+    </table>
+</div>
+<div>
+    <h1>Add Users to the project </h1>
+    <table>
+        <tr>
+            <th>Name</th>
+        </tr>
+        <tr *ngFor="let user of users">
+            <td>{{user.name}}</td>
+            <td> <button (click)="addUser(user.id)"> Add</button> </td>
+        </tr>
+    </table>
+</div>
+<div>
+    <label for="hours">hours:</label>
+    <input type="number" name="hours" [(ngModel)]="formReport.hours"required>
+    <button (click)="createReport()">createReport</button>
+</div>
