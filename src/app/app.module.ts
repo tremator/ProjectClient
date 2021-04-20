@@ -4,6 +4,8 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
 
+import { ChartsModule } from 'ng2-charts';
+import { PieChartComponent } from './piechart/piechart.component';
 import {APOLLO_OPTIONS} from 'apollo-angular';
 import {HttpLink} from 'apollo-angular/http';
 import {InMemoryCache} from '@apollo/client/core';
@@ -21,16 +23,19 @@ import { RegisterComponent } from './register/register.component';
   declarations: [
     AppComponent,
     LoginComponent,
+    PieChartComponent,
     ProjectsComponent,
     ProjectDetailComponent,
     ProjectReportsComponent,
     UserReportsComponent,
-    RegisterComponent
+    RegisterComponent,
+    
   ],  
   imports: [
     BrowserModule,
     HttpClientModule,
     FormsModule,
+    ChartsModule,
     RouterModule.forRoot([
       { path: '', component: LoginComponent, pathMatch: 'full' },
       { path: 'home', component: ProjectsComponent},

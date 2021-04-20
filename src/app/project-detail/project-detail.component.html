@@ -1,46 +1,147 @@
-<a [routerLink]="['/projectReports',id]" routerLinkActive="router-link-active">
-    View Reports
-</a>
-<br>
-<br>
-<br>
-<div>
-    <label for="name">Name:</label>
-    <input type="text" name="name" [(ngModel)]="form.name" value ="project.name" required>
-    <br>
-    <label for="description">Description:</label>
-    <input type="text" name="description" [(ngModel)]="form.description" value ="project.description" required>
-    <br>
-    
-    <br>
-    <button (click)="update()">Update</button>
-</div>
-<div>
-    <h1>Current users in the project</h1>
-    <table>
-        <tr>
-            <th>Name</th>
-        </tr>
-        <tr *ngFor="let user of currentUsers">
-            <td>{{user.name}}</td>
-            <td> <button (click)="deleteUser(user.id)"> Delete</button> </td>
-        </tr>
-    </table>
-</div>
-<div>
-    <h1>Add Users to the project </h1>
-    <table>
-        <tr>
-            <th>Name</th>
-        </tr>
-        <tr *ngFor="let user of users">
-            <td>{{user.name}}</td>
-            <td> <button (click)="addUser(user.id)"> Add</button> </td>
-        </tr>
-    </table>
+<head>
+    <link href="https://unpkg.com/tailwindcss@^2.0/dist/tailwind.min.css" rel="stylesheet">
+</head>
+<div class="-my-2 py-2 overflow-x-auto sm:-mx-6 sm:px-6 lg:-mx-8 pr-10 lg:px-8">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css" rel="stylesheet">
+    <div class="w-screen flex flex-row items-center p-1 justify-between bg-white shadow-xs">
+        <div class="ml-8 text-lg text-gray-700 hidden md:flex">My Hours</div>
+        <div class="flex flex-row-reverse mr-4 ml-4 md:hidden">
+            <i class="fas fa-bars"></i>
+        </div>
+        <div class="flex flex-row-reverse mr-8 hidden md:flex">
+            <div class="text-gray-700 text-center bg-gray-400 px-4 py-2 m-2">View my reports</div>
+            <div class="text-gray-700 text-center bg-gray-400 px-4 py-2 m-2">Log out</div>
+        </div>
+    </div>
+    <!-- <a [routerLink]="['/userReports',userId]" routerLinkActive="router-link-active">
+                    View My Reports
+                </a> -->
+    <!-- <button (click)="logOut()">
+                    LogOut
+                </button> -->
+
+    <div class="align-middle inline-block min-w-full shadow overflow-hidden bg-white shadow-dashboard px-8 pt-3 rounded-bl-lg rounded-br-lg">
+        <div class="block pl-2 font-semibold text-xl self-start text-gray-700">
+            <h3 class="leading-relaxed">Current Project Users</h3>
+        </div>
+        <table class="min-w-full">
+            <thead>
+                <tr>
+                    <th class="px-6 py-3 border-b-2 border-gray-300 text-left leading-4 text-purple-500 tracking-wider">User Name</th>
+                    <th class="px-6 py-3 border-b-2 border-gray-300 text-right text-sm leading-4 text-purple-500 tracking-wider">Action</th>
+                </tr>
+            </thead>
+            <tbody class="bg-white">
+                <tr *ngFor="let user of currentUsers">
+                    <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-500">
+                        <div class="text-sm leading-5 text-blue-900">{{user.name}}</div>
+                    </td>
+                    <td class="px-6 py-4 whitespace-no-wrap text-right border-b border-gray-500 text-sm leading-5">
+                        <button (click)="deleteUser(user.id)" class="px-5 py-2 border-red-500 border text-white-500 rounded transition duration-300 hover:bg-red-700 hover:text-white focus:outline-none">Delete</button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <div class="sm:flex-1 sm:flex sm:items-center sm:justify-between mt-4 work-sans">
+        </div>
+    </div>
+
+    <div class="align-middle inline-block min-w-full shadow overflow-hidden bg-white shadow-dashboard px-8 pt-3 rounded-bl-lg rounded-br-lg">
+        <div class="block pl-2 font-semibold text-xl self-start text-gray-700">
+            <h3 class="leading-relaxed">Add users to project</h3>
+        </div>
+        <table class="min-w-full">
+            <thead>
+                <tr>
+                    <th class="px-6 py-3 border-b-2 border-gray-300 text-left leading-4 text-purple-500 tracking-wider">User Name</th>
+                    <th class="px-6 py-3 border-b-2 border-gray-300 text-right text-sm leading-4 text-purple-500 tracking-wider">Action</th>
+                </tr>
+            </thead>
+            <tbody class="bg-white">
+                <tr *ngFor="let user of currentUsers">
+                    <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-500">
+                        <div class="text-sm leading-5 text-blue-900">{{user.name}}</div>
+                    </td>
+                    <td class="px-6 py-4 whitespace-no-wrap text-right border-b border-gray-500 text-sm leading-5">
+                        <button (click)="addUser(user.id)" class="px-5 py-2 border-purple-500 border text-purple-500 rounded transition duration-300 hover:bg-purple-700 hover:text-white focus:outline-none">Add</button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <div class="sm:flex-1 sm:flex sm:items-center sm:justify-between mt-4 work-sans">
+        </div>
+    </div>
 </div>
 <div>
     <label for="hours">hours:</label>
-    <input type="number" name="hours" [(ngModel)]="formReport.hours"required>
+    <input type="number" name="hours" [(ngModel)]="formReport.hours" required>
     <button (click)="createReport()">createReport</button>
+</div>
+<div class="min-h-screen bg-gray-100 py-6 flex flex-col align-left sm:py-12">
+    <div class="relative py-3 sm:max-w-xl sm:mx-auto">
+        <div class="relative px-4 py-10 bg-white mx-8 md:mx-0 shadow rounded-3xl sm:p-10">
+            <div class="max-w-md mx-auto">
+                <div class="flex items-center space-x-5">
+                    <div
+                        class="h-14 w-14 bg-yellow-200 rounded-full flex flex-shrink-0 justify-center items-center text-yellow-500 text-2xl font-mono">
+                        i</div>
+                    <div class="block pl-2 font-semibold text-xl self-start text-gray-700">
+                        <h2 class="leading-relaxed">Add hours</h2>
+                    </div>
+                </div>
+                <div class="divide-y divide-gray-200">
+                    <div class="py-8 text-base leading-6 space-y-4 text-gray-700 sm:text-lg sm:leading-7">
+                        <div class="flex flex-col">
+                            <label class="leading-loose">Hours</label>
+                            <input type="number" [(ngModel)]="formReport.hours" required
+                                class="px-4 py-2 border focus:ring-gray-500 focus:border-gray-900 w-full sm:text-sm border-gray-300 rounded-md focus:outline-none text-gray-600"
+                                placeholder="Hours">
+                        </div>
+                    </div>
+                    <div class="pt-4 flex items-center space-x-4">
+                        <button
+                            class="bg-purple-500 flex justify-center items-center w-full text-white px-4 py-3 rounded-md focus:outline-none"
+                            (click)="createReport()">Create report</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="min-h-screen bg-gray-100 py-6 flex flex-col align-left sm:py-12">
+    <div class="relative py-3 sm:max-w-xl sm:mx-auto">
+        <div class="relative px-4 py-10 bg-white mx-8 md:mx-0 shadow rounded-3xl sm:p-10">
+            <div class="max-w-md mx-auto">
+                <div class="flex items-center space-x-5">
+                    <div
+                        class="h-14 w-14 bg-yellow-200 rounded-full flex flex-shrink-0 justify-center items-center text-yellow-500 text-2xl font-mono">
+                        i</div>
+                    <div class="block pl-2 font-semibold text-xl self-start text-gray-700">
+                        <h2 class="leading-relaxed">Update project</h2>
+                    </div>
+                </div>
+                <div class="divide-y divide-gray-200">
+                    <div class="py-8 text-base leading-6 space-y-4 text-gray-700 sm:text-lg sm:leading-7">
+                        <div class="flex flex-col">
+                            <label class="leading-loose">Name</label>
+                            <input type="text" [(ngModel)]="form.name" required
+                                class="px-4 py-2 border focus:ring-gray-500 focus:border-gray-900 w-full sm:text-sm border-gray-300 rounded-md focus:outline-none text-gray-600"
+                                placeholder="Project name">
+                        </div>
+                        <div class="flex flex-col">
+                            <label class="leading-loose">Description</label>
+                            <input type="text" [(ngModel)]="form.description" required
+                                class="px-4 py-2 border focus:ring-gray-500 focus:border-gray-900 w-full sm:text-sm border-gray-300 rounded-md focus:outline-none text-gray-600"
+                                placeholder="Project Description">
+                        </div>
+                    </div>
+                    <div class="pt-4 flex items-center space-x-4">
+                        <button
+                            class="bg-purple-500 flex justify-center items-center w-full text-white px-4 py-3 rounded-md focus:outline-none"
+                            (click)="update()">Update</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>

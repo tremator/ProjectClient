@@ -22,6 +22,9 @@
     "@apollo/client": "^3.3.15",
     "apollo-angular": "^2.4.0",
     "graphql": "^15.5.0",
+    "ng2-charts": "^2.4.2",
+    "pie-chart": "^0.0.1",
+    "piechart": "^1.0.0",
     "rxjs": "~6.6.0",
     "tslib": "^2.0.0",
     "zone.js": "~0.11.3"
